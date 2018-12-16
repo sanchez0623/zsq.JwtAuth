@@ -7,15 +7,13 @@ using Microsoft.AspNetCore.Authorization;
 using zsq.JwtAuth.ViewModels;
 using System.Security.Claims;
 using zsq.JwtAuth.Models;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace zsq.JwtAuth.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class AuthorizeController : ControllerBase
     {
         private JwtSettings _jwtSettings { get; set; }
@@ -25,7 +23,8 @@ namespace zsq.JwtAuth.Controllers
             _jwtSettings = jwtSettings.Value;
         }
 
-        public IActionResult Token(LoginViewModel vm)
+        [HttpPost]
+        public IActionResult Token([FromBody]LoginViewModel vm)
         {
             if (ModelState.IsValid)
             {
