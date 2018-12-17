@@ -64,9 +64,9 @@ namespace zsq.JwtAuth
                 app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
-            app.UseMvc();
             app.UseAuthentication();
+            app.UseHttpsRedirection();
+            app.UseMvc();
         }
     }
 }

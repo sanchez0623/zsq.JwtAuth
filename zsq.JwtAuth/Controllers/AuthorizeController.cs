@@ -14,6 +14,8 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace zsq.JwtAuth.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthorizeController : ControllerBase
     {
         private JwtSettings _jwtSettings { get; set; }
@@ -24,7 +26,7 @@ namespace zsq.JwtAuth.Controllers
         }
 
         [HttpPost]
-        public IActionResult Token([FromBody]LoginViewModel vm)
+        public IActionResult Post([FromBody]LoginViewModel vm)
         {
             if (ModelState.IsValid)
             {

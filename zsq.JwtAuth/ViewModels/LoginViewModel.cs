@@ -6,6 +6,7 @@ namespace zsq.JwtAuth.ViewModels
     {
         [Required]
         public string Username { get; set; }
+        
         [Required]
         public string Password { get; set; }
     }
