@@ -59,7 +59,7 @@ namespace zsq.JwtAuth
                         context.Token = token;
                         return Task.CompletedTask;
                     }
-                }
+                };
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
