@@ -19,13 +19,13 @@ namespace zsq.JwtAuth
         public ClaimsPrincipal ValidateToken(string securityToken, TokenValidationParameters validationParameters, out SecurityToken validatedToken)
         {
             validatedToken = null;
-
-            if (securityToken != "123456")
-                return null;
-
             var identity = new ClaimsIdentity(JwtBearerDefaults.AuthenticationScheme);
-            identity.AddClaim(new Claim("name", "sanchez"));
-            identity.AddClaim(new Claim(ClaimsIdentity.DefaultRoleClaimType, "admin"));
+
+            if (securityToken == "123456")
+            {
+                identity.AddClaim(new Claim("name", "sanchez"));
+                identity.AddClaim(new Claim(ClaimsIdentity.DefaultRoleClaimType, "admin"));
+            }
             var principal = new ClaimsPrincipal(identity);
 
             return principal;
