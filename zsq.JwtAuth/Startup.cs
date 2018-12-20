@@ -41,12 +41,25 @@ namespace zsq.JwtAuth
             })
             .AddJwtBearer(options =>
             {
-                options.TokenValidationParameters = new TokenValidationParameters
+                // options.TokenValidationParameters = new TokenValidationParameters
+                // {
+                //     ValidIssuer = jwtSettings.Issuer,
+                //     ValidAudience = jwtSettings.Audience,
+                //     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+                // };
+
+                options.SecurityTokenValidators.Clear();
+                options.SecurityTokenValidators.Add(new MyTokenValidator());
+
+                options.Events = new JwtBearerEvents
                 {
-                    ValidIssuer = jwtSettings.Issuer,
-                    ValidAudience = jwtSettings.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
-                };
+                    OnMessageReceived = context =>
+                    {
+                        var token = context.Request.Headers["token"];
+                        context.Token = token;
+                        return Task.CompletedTask;
+                    }
+                }
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
