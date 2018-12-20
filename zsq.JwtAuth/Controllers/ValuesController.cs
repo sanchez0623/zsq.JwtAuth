@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace zsq.JwtAuth.Controllers
 {
-    [Authorize]
+    [Authorize(Roles="admin")]
+    //目前比较不推荐使用Role-based，而是使用Claim-based
+    //[Authorize(Roles="user")]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -16,7 +18,8 @@ namespace zsq.JwtAuth.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return User.Claims.Select(c=>c.Type+" "+c.Value).ToList();
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
