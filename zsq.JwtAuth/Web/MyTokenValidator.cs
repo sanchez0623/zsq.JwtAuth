@@ -24,6 +24,7 @@ namespace zsq.JwtAuth
             if (securityToken == "123456")
             {
                 identity.AddClaim(new Claim("name", "sanchez"));
+                identity.AddClaim(new Claim("SuperAdminOnly", "true"));
                 identity.AddClaim(new Claim(ClaimsIdentity.DefaultRoleClaimType, "admin"));
             }
             var principal = new ClaimsPrincipal(identity);

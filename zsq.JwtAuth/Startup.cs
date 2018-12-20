@@ -62,6 +62,11 @@ namespace zsq.JwtAuth
                 };
             });
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("SuperAdminOnly", policy => policy.RequireClaim("SuperAdminOnly"));
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

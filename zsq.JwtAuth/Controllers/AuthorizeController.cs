@@ -38,6 +38,7 @@ namespace zsq.JwtAuth.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name,"sanchez"),
+                    new Claim("SuperAdminOnly","true"),
                     new Claim(ClaimTypes.Role,"admin")
                 };
 

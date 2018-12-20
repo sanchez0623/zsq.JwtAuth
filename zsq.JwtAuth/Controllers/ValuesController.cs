@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace zsq.JwtAuth.Controllers
 {
-    [Authorize]
+    [Authorize(Policy="SuperAdminOnly")]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
